@@ -29,7 +29,7 @@
 
     <body class="d-flex flex-column h-100">
         <!--NAV BAR-->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top">
             <div class="container-fluid">
                 <img src="img/android-chrome-192x192.png" class="me-3" 
                     width="30" height="24">
@@ -50,7 +50,7 @@
                             <a class="nav-link active secondary-font" aria-current="page" href="/code.html">The Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link secondary-font" target="_blank" href="https://github.com/DominicWegrzynowski/ZeroTo100">Git Repo</a>
+                            <a class="nav-link secondary-font" target="_blank" href="https://github.com/DominicWegrzynowski/FizzBuzz">Git Repo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link secondary-font" target="_blank" href="https://dominicdeveloper.netlify.app/">About</a>
@@ -62,7 +62,8 @@
         <!--CONTENT-->
         <main class="flex-shrink-0">
             <div class="container my-5 py-4 px-5 mt-5">
-                <div class="row border-1 border-bottom border-dark pb-1">
+                <!--  -->
+                <div class="row border-1 border-bottom border-dark pb-1 mb-3">
                     <div class="col-6 col-md-8">
                         <h1 class="secondary-font pt-5"><strong>FIZZ BUZZ's Code:</strong></h1>
                     </div>
@@ -149,9 +150,18 @@
                     </div>
                     <!-- Code Description -->
                     <div class="col-lg-4">
-                        <p>The Code is structured in one function.</p>
-                        <h5>Print Name</h5>
-                        <p>PrintName consists of three functions that are each responsible for printing one part of a name. firstName is responsible for printing the first name via the fullName parameter. middleName is responsible for printing the middle name via the middle name parameter. lastName is responsible for printing the last name via the lastName parameter.</p>
+                        <h4 class="text-center"><strong>The Design:</strong></h4>
+                        <p>To keep the code as clean as possible, the program is encapsulated into three functions:</p>
+                        <ul>
+                            <li><h5>getValues</h5></li>
+                            <p>This function serves as the entry point to the program, being the function called by the button's click event listener. First, it stores the user input into variables by accessing the value property from the startValue and endValue elements.
+                                Next, it castes these variables from string to number types, and validates that they are integers. Next, it creates a local array called numbers and assigns it the array returned by the generateNumbers function, passing it the startValue and endValue variables. Lastly, it calls the displayNumbers function, passing it the newley generated numbers array as it's argument.
+                            </p>
+                            <li><h5>generateNumbers</h5></li>
+                            <p>This function serves as the main logic of the program, being responsible for generating the numbers array and replacing the correct numbers with "fizz", "buzz", or "fizzbuzz" to be displayed on the screen. It takes two arguments(startValue, endValue) and uses a for loop to loop from that startValue to the endValue. In every iteration of the loop, it uses a conditional statement to check if the index value(i) is a multiple of 3, 5 or both 3 & 5. If it is a multiple of one of those values, it will push the corresponding "fizz", "buzz", or "fizzbuzz" to the numbers array and continue to the next iteration of the loop. The expected output should be a combination of numbers between the startValue and endValue mixed in with "fizz", "buzz", and "fizzbuzz" based on each number's multiples. Finally, it returns this numbers array.</p>
+                            <li><h5>displayNumbers</h5></li>
+                            <p>This function is responsible for modifying the html table on the page and inserting a new row with the corresponding number, "fizz", "buzz", or "fizzbuzz". The only argument in this function is numbers which is the finalized array of numbers passed in from the generateNumbers function. First, the templateRows variable is declared as an empty string. Next, it loops from 0 to the length of the numbers array. Within the loop, the number variable is declared being assigned to the current number in the numbers array. It then adds a template literal to the templateRows variable with the necessary HTML for a table row and table data element, containing the number variable. This process is then repeated until the loop is finished. Lastly, it uses the getElementById method to assign the element's innerHTML property with an id of "results" to the value of templateRows.</p>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -169,8 +179,9 @@
                         </div>
                     </div>
                     <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
-                        <img src="/img/dominic-wegrzynowski-logo.png" alt="Dominic Wegrzynowski Logo" height="36">
-                    </div>
+                        <a href="https://dominicdeveloper.netlify.app/" target="_self">
+                            <img src="/img/dominic-wegrzynowski-logo.png" alt="Dominic Wegrzynowski Logo" height="36">
+                        </a>                    </div>
                     <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                         <div class="row">
                             <div class="col social">

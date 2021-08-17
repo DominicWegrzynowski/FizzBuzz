@@ -20,7 +20,7 @@
 
     <body class="d-flex flex-column h-100">
         <!--NAV BAR-->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top background-custom">
             <div class="container-fluid">
                 <img src="img/android-chrome-192x192.png" class="me-3" 
                     width="30" height="24">
@@ -67,25 +67,25 @@
                                 <h4>Enter Values</h4>
                             </div>
                             <div class="col">
-                                <input id="startValue"
+                                <input id="fizzValue"
                                        type="number" 
                                        class="form-control" 
-                                       placeholder="Start Value" 
-                                       value="0" 
-                                       aria-label="Start Value"
+                                       placeholder="Fizz Value" 
+                                       value="3" 
+                                       aria-label="Fizz Value"
                                 >
                             </div>
                             <div class="col">
-                                <input id="endValue"
+                                <input id="buzzValue"
                                        type="number" 
                                        class="form-control" 
-                                       placeholder="End Value" 
-                                       value="100" 
-                                       aria-label="End Value"
+                                       placeholder="Buzz Value" 
+                                       value="5" 
+                                       aria-label="Buzz Value"
                                 >
                             </div>
                             <div class="col-12 d-flex justify-content-center">
-                                <button id="btnSubmit" type="button" class="btn btn-dark btn-lg mt-1">Display Numbers</button>
+                                <button id="btnSubmit" type="button" class="btn btn-dark btn-lg mt-1">Display Fizz Buzz</button>
                             </div>
                         </form>
                         <h2 class="mt-5 border-bottom border-2">Results</h2>
@@ -102,7 +102,7 @@
             </div>
         </main>
         <!--FOOTER-->
-        <footer class="footer mt-auto py-3 sticky-footer">
+        <footer class="footer mt-auto py-3 sticky-footer background-custom">
             <div class="container-fluid">
                 <div class="row row-cols-1 row-cols-lg-3 gy-2">
                     <div class="col order-last order-lg-first d-flex align-items-center text-light">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
                         <a href="https://dominicdeveloper.netlify.app/" target="_self">
-                            <img src="/img/dominic-wegrzynowski-logo.png" alt="Dominic Wegrzynowski Logo" height="36">
+                            <img src="/img/dominic-weg-logo.svg" alt="Dominic Wegrzynowski Logo" height="36">
                         </a>                    
                     </div>
                     <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
@@ -134,6 +134,17 @@
                 </div>
             </div>
         </footer>
+
+        <template id="fizzBuzzTemplate">
+            <tr>
+                <td></td> <!-- index : 0 -->
+                <td></td> <!-- index: 1 -->
+                <td></td> <!-- index: 3 -->
+                <td></td> <!-- index: 4 -->
+                <td></td> <!-- index: 5 -->
+            </tr>
+        </template>
+
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
             integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
@@ -142,7 +153,7 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
         </script>
         <!--Custom JS-->
-        <script src="/js/site.js"></script>
+        <script src="/js/site1.js"></script>
 
         <script>
             document.getElementById("btnSubmit").addEventListener("click", getValues);

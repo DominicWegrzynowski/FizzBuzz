@@ -1,1 +1,1 @@
-# JsSiteTemplate
+# Fizz Buzz project

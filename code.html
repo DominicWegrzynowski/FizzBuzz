@@ -61,106 +61,123 @@
         </nav>
         <!--CONTENT-->
         <main class="flex-shrink-0">
-            <div class="container my-5 py-4 px-5 mt-5">
-                <!--  -->
-                <div class="row border-1 border-bottom border-dark pb-1 mb-3">
-                    <div class="col-6 col-md-8">
-                        <h1 class="secondary-font pt-5"><strong>FIZZ BUZZ's Code:</strong></h1>
+            <div class="container my-5 mt-5 py-4 px-5">
+                <!-- HEADER -->
+                <div class="row border-1 border-bottom border-dark pb-md-2">
+                    <div class="col">
+                        <h1 class="secondary-font pt-3 pt-md-5"><strong>FIZZ BUZZ's Code:</strong></h1>
                     </div>
-                    <div class="col d-flex justify-content-center">
-                        <img src="/img/fizzbuzz-trans.svg" width="150" height="150" alt="fizz buzz logo">
+                    <div class="col d-flex justify-content-center ps-md-5 ms-md-5">
+                        <img class="ms-md-5" src="/img/fizzbuzz-trans.svg" width="150" height="150" alt="fizz buzz logo">
                     </div>
                 </div>
                     
                 <div class="row row-cols-1 row-cols-lg-2">
                     <!-- Code Window -->
-                    <div class="col-lg-8">
+                    <div class="col-lg-7 mt-md-5 mt-3 pt-md-5">
                         <pre class="line-numbers">
                             <code class="language-javascript">
                                 function getValues() {
     
-                                    let startValue = document.getElementById("startValue").value;
-                                    let endValue = document.getElementById("endValue").value;
+                                    let fizzValue = parseInt(document.getElementById("fizzValue").value);
+                                    let buzzValue = parseInt(document.getElementById("buzzValue").value);
                                 
-                                    //validate data
-                                    startValue = parseInt(startValue);
-                                    endValue = parseInt(endValue);
+                                    if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
                                 
-                                    if( Number.isInteger(startValue) && Number.isInteger(endValue) ) {
-                                        
-                                        let numbers = generateNumbers(startValue, endValue);
-                                        displayNumbers(numbers);
-                                    }
-                                    else {
+                                        let fizzBuzzArray = generateData(fizzValue, buzzValue);
+                                        displayData(fizzBuzzArray);
                                 
-                                        alert("Error: You must enter integers");
+                                    } else {
+                                
+                                        alert("You must enter an integer");
                                 
                                     }
                                 
                                 }
                                 
-                                function generateNumbers(startValue, endValue) {
+                                function generateData(fizzValue, buzzValue) {
                                 
-                                    let numbers = [];
+                                    let returnArray = [];
+                                
+                                    for (let i = 1; i <= 100; i++) {
+                                        //turinary operator evaluates true false
+                                        let value = (( i % fizzValue === 0 ? "Fizz": "")
+                                                  + (i % buzzValue === 0 ? "Buzz" : "" ) || i );
+
+                                        returnArray.push(value);
+                                    }
+                                
+                                    return returnArray;
+                                
+                                }
+                                
+                                function displayData(fizzBuzzArray) {
                                     
-                                    for(let i = startValue; i <= endValue; i++) {
+                                    //get the table body element from the page
+                                    let tableBody = document.getElementById("results");
+                                
+                                    //get the template itsself
+                                    let templateRow = document.getElementById("fizzBuzzTemplate");
+                                
+                                    //clear table
+                                    tableBody.innerHTML = "";
+                                    
+                                    for (let i = 0; i < fizzBuzzArray.length; i += 5) {
+                                
+                                        let tableRow = document.importNode(templateRow.content, true);
                                         
-                                        if(i % 3 == 0 && i % 5 == 0) {
-                                            numbers.push("fizzbuzz");
-                                            continue;
-                                        }
+                                        let rowCols = tableRow.querySelectorAll("td");
                                 
-                                        if(i % 3 == 0) {
-                                            numbers.push("fizz");
-                                            continue;
-                                        }
+                                        rowCols[0].classList.add(fizzBuzzArray[i]); 
+                                        rowCols[0].textContent = fizzBuzzArray[i]; 
                                 
-                                        if(i % 5 == 0) {
-                                            numbers.push("buzz");
-                                            continue;
-                                        }
+                                        rowCols[1].classList.add(fizzBuzzArray[i + 1]);
+                                        rowCols[1].textContent = fizzBuzzArray[i + 1];
                                 
-                                        else {
-                                            numbers.push(i);
-                                        }
+                                        rowCols[2].classList.add(fizzBuzzArray[i + 2]);
+                                        rowCols[2].textContent = fizzBuzzArray[i + 2];
                                 
+                                        rowCols[3].classList.add(fizzBuzzArray[i + 3]);
+                                        rowCols[3].textContent = fizzBuzzArray[i + 3];
+                                
+                                        rowCols[4].classList.add(fizzBuzzArray[i + 4]);
+                                        rowCols[4].textContent = fizzBuzzArray[i + 4];
+                                
+                                        tableBody.appendChild(tableRow);
                                     }
-                                
-                                    return numbers;
-                                
+                                    
                                 }
-                                
-                                function displayNumbers(numbers) {
-                                
-                                    let templateRows = "";
-                                
-                                    for(var i = 0; i < numbers.length; i++) {
-                                
-                                        let number = numbers[i];
-                                
-                                        templateRows += `< tr >< td >${number}< td/>< t />`;
-                                
-                                    }
-                                
-                                    document.getElementById("results").innerHTML = templateRows;
-                                
-                                }
+
                             </code>
                         </pre>
                     </div>
                     <!-- Code Description -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <h4 class="text-center"><strong>The Design:</strong></h4>
                         <p>To keep the code as clean as possible, the program is encapsulated into three functions:</p>
                         <ul>
                             <li><h5>getValues</h5></li>
-                            <p>This function serves as the entry point to the program, being the function called by the button's click event listener. First, it stores the user input into variables by accessing the value property from the startValue and endValue elements.
-                                Next, it castes these variables from string to number types, and validates that they are integers. Next, it creates a local array called numbers and assigns it the array returned by the generateNumbers function, passing it the startValue and endValue variables. Lastly, it calls the displayNumbers function, passing it the newley generated numbers array as it's argument.
+                            <p>This function serves as the entry point to the program, being the function called by the button's click event listener. First, it stores the user input into variables by accessing the value property from the fizzValue and buzzValue elements.
+                                Next, it castes these variables from string to number types, and validates that they are integers. Next, it creates a local array called fizzBuzzArray and assigns it the array returned by the generateData function, passing it the fizzValue and buzzValue variables. Lastly, it calls the displayData function, passing it the newley generated fizzBuzzArray as it's argument.
                             </p>
-                            <li><h5>generateNumbers</h5></li>
-                            <p>This function serves as the main logic of the program, being responsible for generating the numbers array and replacing the correct numbers with "fizz", "buzz", or "fizzbuzz" to be displayed on the screen. It takes two arguments(startValue, endValue) and uses a for loop to loop from that startValue to the endValue. In every iteration of the loop, it uses a conditional statement to check if the index value(i) is a multiple of 3, 5 or both 3 & 5. If it is a multiple of one of those values, it will push the corresponding "fizz", "buzz", or "fizzbuzz" to the numbers array and continue to the next iteration of the loop. The expected output should be a combination of numbers between the startValue and endValue mixed in with "fizz", "buzz", and "fizzbuzz" based on each number's multiples. Finally, it returns this numbers array.</p>
-                            <li><h5>displayNumbers</h5></li>
-                            <p>This function is responsible for modifying the html table on the page and inserting a new row with the corresponding number, "fizz", "buzz", or "fizzbuzz". The only argument in this function is numbers which is the finalized array of numbers passed in from the generateNumbers function. First, the templateRows variable is declared as an empty string. Next, it loops from 0 to the length of the numbers array. Within the loop, the number variable is declared being assigned to the current number in the numbers array. It then adds a template literal to the templateRows variable with the necessary HTML for a table row and table data element, containing the number variable. This process is then repeated until the loop is finished. Lastly, it uses the getElementById method to assign the element's innerHTML property with an id of "results" to the value of templateRows.</p>
+                            <li><h5>generateData</h5></li>
+                            <p>This function serves as the main logic of the program, being responsible for generating the array of numbers and replacing certain numbers with their corresponding fizzbuzz value. To do this, first the returnArray is initialized. Next, there is a for loop looping from 1-100(including the 100). Within this loop, there is a variable being defined called value which contains the result of the following conditional expression. This expression uses two turinary operators to build a FizzBuzz string. It essentially reads, if the current index(i) in the loop is a multiple of the fizzValue set value to "Fizz" , if it's not a multiple then set value to "". It does the same thing for the buzzValue and concatinates those two expression results together as either "Fizz" + "" = "Fizz", "" + "Buzz" = "Buzz", "Fizz" + "Buzz" = "FizzBuzz", or finally simply the value of the index(i) in the scenario where it is an empty string. It then pushes this value to the array and repeats this process until the loop finishes. Lastly, it returns this array.</p>
+                            <li><h5>displayData</h5></li>
+                            <p>displayData uses a more modular approach to modifying the DOM and displaying the fizzBuzzArray. This modular approach consists of using the following template tag under the fizzBuzzTemplate id: </p>
+                            <pre class="line-numbers">
+                                <code class="language-markup">
+                                    &lt;template id="fizzBuzzTemplate">
+                                        &lt;tr>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                            &lt;td>&lt;/td>
+                                        &lt;/tr>
+                                    &lt;/template>
+                                </code>
+                            </pre>
+                            <p>Within the displayData function itsself, it first stores two variables: tableBody, and templateRow. The tableBody variable gets assigned the "results" table that will store the results of the data. The templateRow variable gets assigned the fizzBuzzTemplate displayed above. Next, the table is cleared to ensure that there is no data in it before the function begins to add the data to it. There is then a for loop going from 0 to the length of the fizzBuzzArray(passed in as an argument) and incrementing 5 at a time, since there will be 5 columns per row. The first thing done inside of this loop is the initialization of the tableRow variable. It's value is the value returned by the document.importNode method. This method creates a copy of a DocumentFragment(the template) from the app.html page. It takes two arguments, the first being the templateRow.content which is a copy of the current content in the templateRow template. The second argument is "true" which tells the method to include the DocumentFragment's descendents which is important for this project. Next, the variable rowCols is initialized to one td element in the template. The function then does two things five times per iteration. First, it adds the fizzBuzzArray value to classList to add in different colored styling for each fizzbuzz element. Second, it assigns the textContent of the current td in the rowCols array to the current fizzBuzzArray element, inserting the actual value into the td element. Once it does this five times, for each td value, it then calls the appendChild method on the tableBody variable and adds this tableRow to it. This happens 100 times and the program finishes with an updated table of data.</p>
                         </ul>
                     </div>
                 </div>

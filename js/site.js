@@ -1,68 +1,68 @@
 function getValues() {
     
-    let startValue = document.getElementById("startValue").value;
-    let endValue = document.getElementById("endValue").value;
+    let fizzValue = parseInt(document.getElementById("fizzValue").value);
+    let buzzValue = parseInt(document.getElementById("buzzValue").value);
 
-    //validate data
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
+    if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
 
-    if( Number.isInteger(startValue) && Number.isInteger(endValue) ) {
-        
-        let numbers = generateNumbers(startValue, endValue);
-        displayNumbers(numbers);
-    }
-    else {
+        let fizzBuzzArray = generateData(fizzValue, buzzValue);
+        displayData(fizzBuzzArray);
 
-        alert("Error: You must enter integers");
+    } else {
+
+        alert("You must enter an integer");
 
     }
 
 }
 
-function generateNumbers(startValue, endValue) {
+function generateData(fizzValue, buzzValue) {
 
-    let numbers = [];
+    let returnArray = [];
+
+    for (let i = 1; i <= 100; i++) {
+        //turinary operator evaluates true false
+        let value = (( i % fizzValue === 0 ? "Fizz": "") + (i % buzzValue === 0 ? "Buzz" : "" ) || i );
+        returnArray.push(value);
+    }
+
+    return returnArray;
+
+}
+
+function displayData(fizzBuzzArray) {
     
-    for(let i = startValue; i <= endValue; i++) {
+    //get the table body element from the page
+    let tableBody = document.getElementById("results");
+
+    //get the template itsself
+    let templateRow = document.getElementById("fizzBuzzTemplate");
+
+    //clear table
+    tableBody.innerHTML = "";
+    
+    for (let i = 0; i < fizzBuzzArray.length; i += 5) {
+
+        let tableRow = document.importNode(templateRow.content, true);
         
-        if(i % 3 == 0 && i % 5 == 0) {
-            numbers.push("fizzbuzz");
-            continue;
-        }
+        let rowCols = tableRow.querySelectorAll("td");
 
-        if(i % 3 == 0) {
-            numbers.push("fizz");
-            continue;
-        }
+        rowCols[0].classList.add(fizzBuzzArray[i]); //add "Fizz", "Buzz", or "FizzBuzz" as a class for styling
+        rowCols[0].textContent = fizzBuzzArray[i]; //change the row's column(cell)'s content to the corresponding fizzBuzzArray data
 
-        if(i % 5 == 0) {
-            numbers.push("buzz");
-            continue;
-        }
+        rowCols[1].classList.add(fizzBuzzArray[i + 1]);
+        rowCols[1].textContent = fizzBuzzArray[i + 1];
 
-        else {
-            numbers.push(i);
-        }
+        rowCols[2].classList.add(fizzBuzzArray[i + 2]);
+        rowCols[2].textContent = fizzBuzzArray[i + 2];
 
+        rowCols[3].classList.add(fizzBuzzArray[i + 3]);
+        rowCols[3].textContent = fizzBuzzArray[i + 3];
+
+        rowCols[4].classList.add(fizzBuzzArray[i + 4]);
+        rowCols[4].textContent = fizzBuzzArray[i + 4];
+
+        tableBody.appendChild(tableRow); //append the actual table with the final tableRow template data
     }
-
-    return numbers;
-
-}
-
-function displayNumbers(numbers) {
-
-    let templateRows = "";
-
-    for(var i = 0; i < numbers.length; i++) {
-
-        let number = numbers[i];
-
-        templateRows += `<tr><td>${number}</td></tr>`;
-
-    }
-
-    document.getElementById("results").innerHTML = templateRows;
-
+    
 }

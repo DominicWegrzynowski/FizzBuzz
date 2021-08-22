@@ -21,7 +21,7 @@ function generateData(fizzValue, buzzValue) {
     let returnArray = [];
 
     for (let i = 1; i <= 100; i++) {
-        //turinary operator evaluates true false
+        //ternary operator evaluates true false
         let value = (( i % fizzValue === 0 ? "Fizz": "") + (i % buzzValue === 0 ? "Buzz" : "" ) || i );
         returnArray.push(value);
     }

@@ -100,7 +100,7 @@
                                     let returnArray = [];
                                 
                                     for (let i = 1; i <= 100; i++) {
-                                        //turinary operator evaluates true false
+                                        //ternary operator evaluates true false
                                         let value = (( i % fizzValue === 0 ? "Fizz": "")
                                                   + (i % buzzValue === 0 ? "Buzz" : "" ) || i );
 
@@ -161,7 +161,7 @@
                                 Next, it castes these variables from string to number types, and validates that they are integers. Next, it creates a local array called fizzBuzzArray and assigns it the array returned by the generateData function, passing it the fizzValue and buzzValue variables. Lastly, it calls the displayData function, passing it the newley generated fizzBuzzArray as it's argument.
                             </p>
                             <li><h5>generateData</h5></li>
-                            <p>This function serves as the main logic of the program, being responsible for generating the array of numbers and replacing certain numbers with their corresponding fizzbuzz value. To do this, first the returnArray is initialized. Next, there is a for loop looping from 1-100(including the 100). Within this loop, there is a variable being defined called value which contains the result of the following conditional expression. This expression uses two turinary operators to build a FizzBuzz string. It essentially reads, if the current index(i) in the loop is a multiple of the fizzValue set value to "Fizz" , if it's not a multiple then set value to "". It does the same thing for the buzzValue and concatinates those two expression results together as either "Fizz" + "" = "Fizz", "" + "Buzz" = "Buzz", "Fizz" + "Buzz" = "FizzBuzz", or finally simply the value of the index(i) in the scenario where it is an empty string. It then pushes this value to the array and repeats this process until the loop finishes. Lastly, it returns this array.</p>
+                            <p>This function serves as the main logic of the program, being responsible for generating the array of numbers and replacing certain numbers with their corresponding fizzbuzz value. To do this, first the returnArray is initialized. Next, there is a for loop looping from 1-100(including the 100). Within this loop, there is a variable being defined called value which contains the result of the following conditional expression. This expression uses two ternaryy operators to build a FizzBuzz string. It essentially reads, if the current index(i) in the loop is a multiple of the fizzValue set value to "Fizz" , if it's not a multiple then set value to "". It does the same thing for the buzzValue and concatinates those two expression results together as either "Fizz" + "" = "Fizz", "" + "Buzz" = "Buzz", "Fizz" + "Buzz" = "FizzBuzz", or finally simply the value of the index(i) in the scenario where it is an empty string. It then pushes this value to the array and repeats this process until the loop finishes. Lastly, it returns this array.</p>
                             <li><h5>displayData</h5></li>
                             <p>displayData uses a more modular approach to modifying the DOM and displaying the fizzBuzzArray. This modular approach consists of using the following template tag under the fizzBuzzTemplate id: </p>
                             <pre class="line-numbers">
